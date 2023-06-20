@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "host": "vite --host"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.191",
