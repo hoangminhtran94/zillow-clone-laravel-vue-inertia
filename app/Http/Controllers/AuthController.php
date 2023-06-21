@@ -6,13 +6,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class AuthController extends Controller
 
 {
     public function index(Request $request)
     {
-        $user = Auth::user();
+        $authenticatedUser = Auth::user();
+        if (!$authenticatedUser) {
+            return redirect()->route("login");
+        }
+        $user = User::find($authenticatedUser->id)->load("profileImage");;
         return inertia("Profile/Index", ["user" => $user]);
     }
 

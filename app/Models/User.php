@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -56,6 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
             get: fn ($value) => $value,
             set: fn ($value) => Hash::make($value),
         );
+    }
+
+    public function profileImage(): HasOne
+    {
+        return $this->hasOne(ProfileImage::class);
     }
 
     public function listings(): HasMany

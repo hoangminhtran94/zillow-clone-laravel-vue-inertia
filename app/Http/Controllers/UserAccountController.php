@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ProfileImage;
 
 class UserAccountController extends Controller
 {
@@ -26,6 +27,10 @@ class UserAccountController extends Controller
             "address" => "required",
             "postal_code" => "required"
         ]));
+        $file = $request->file("profile_image");
+        $path = $file->store("images", "public");
+        $user->profileImage()->save(new ProfileImage(["filename" => $path]));
+
 
         Auth::login($user);
         event(new Registered($user));

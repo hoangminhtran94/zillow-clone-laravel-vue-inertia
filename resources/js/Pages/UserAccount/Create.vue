@@ -1,6 +1,7 @@
 <template>
     <form @submit.prevent="signup">
         <div class="w-1/2 mx-auto flex flex-col gap-2">
+            <ImageInput v-model="form.profile_image" />
             <Input
                 id="name"
                 v-model="form.name"
@@ -69,7 +70,10 @@
 <script setup>
 import { useForm, Link } from "@inertiajs/vue3";
 import Input from "../../Components/UI/Input.vue";
+import ImageInput from "../../Components/UI/ImageInput.vue";
+import { onUpdated } from "vue";
 const form = useForm({
+    profile_image: null,
     name: null,
     email: null,
     phone_number: null,
@@ -78,7 +82,9 @@ const form = useForm({
     password: null,
     password_confirmation: null,
 });
-
+onUpdated(() => {
+    console.log(form.profile_image);
+});
 // eslint-disable-next-line no-undef
 const signup = () => form.post(route(`user-account.store`));
 </script>
