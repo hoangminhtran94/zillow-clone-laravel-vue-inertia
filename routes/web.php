@@ -26,9 +26,10 @@ use Illuminate\Http\Request;
 
 Route::get("/", [IndexController::class, "index"])->name("home");
 
+Route::get("/listing/offer", [ListingOfferController::class, "index"])->middleware("auth")->name("listing.offer");
 Route::resource("listing", ListingController::class)->only(["index", "show"]);
 
-Route::resource("listing.offer", ListingOfferController::class)->middleware("auth")->only("store");
+Route::resource("listing.offer", ListingOfferController::class)->middleware("auth")->only(["store"]);
 
 Route::get("login", [AuthController::class, "create"])->name("login");
 Route::post("login", [AuthController::class, "store"])->name("login.store");

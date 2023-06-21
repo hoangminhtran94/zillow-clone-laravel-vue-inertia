@@ -9,6 +9,12 @@ use App\Notifications\OfferMade;
 
 class ListingOfferController extends Controller
 {
+    public function index()
+    {
+        $offers = Offer::byMe()->get();
+        return  inertia("Listing/YourOffers", ['offers' => $offers]);
+    }
+
     public function store(Listing $listing, Request $request)
     {
         $userId = $request->user()->id;

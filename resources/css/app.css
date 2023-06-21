@@ -22,6 +22,9 @@
     .input-filter-r {
         @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-l-0 border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-none rounded-b-md rounded-r-md text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800;
     }
+    .active {
+        @apply dark:bg-white rounded dark:text-black bg-indigo-900 text-white;
+    }
 
     .btn-normal {
         @apply bg-gray-600 hover:bg-gray-500 text-white font-medium p-2 rounded-md;
@@ -57,4 +60,8 @@ input[type="range"]::-ms-thumb {
     border-radius: 25px;
     background: #1d85ee;
     cursor: pointer;
+}
+
+h2 {
+    font-size: x-large;
 }
