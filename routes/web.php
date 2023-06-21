@@ -31,6 +31,7 @@ Route::resource("listing", ListingController::class)->only(["index", "show"]);
 
 Route::resource("listing.offer", ListingOfferController::class)->middleware("auth")->only(["store"]);
 
+Route::get("/your-profile", [AuthController::class, "index"])->middleware("auth")->name("profile");
 Route::get("login", [AuthController::class, "create"])->name("login");
 Route::post("login", [AuthController::class, "store"])->name("login.store");
 Route::delete("logout", [AuthController::class, "destroy"])->name("logout");

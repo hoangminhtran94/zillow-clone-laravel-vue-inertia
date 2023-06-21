@@ -6,21 +6,21 @@
             <nav class="flex p-4 items-center justify-between">
                 <div class="text-lg font-medium flex gap-3">
                     <Link
-                        class="rounded dark:hover:bg-white hover:bg-indigo-900 whitespace-nowrap p-2 hover:text-white"
+                        class="nav-link"
                         :class="{ active: $page.url === '/listing' }"
                         :href="route(`listing.index`)"
                     >
                         View all listings
                     </Link>
                     <Link
-                        class="rounded dark:hover:bg-white hover:bg-indigo-900 whitespace-nowrap p-2 hover:text-white"
+                        class="nav-link"
                         :class="{ active: $page.url === '/realtor/listing' }"
                         :href="route(`realtor.listing.index`)"
                     >
                         Your listings
                     </Link>
                     <Link
-                        class="rounded dark:hover:bg-white hover:bg-indigo-900 whitespace-nowrap p-2 hover:text-white"
+                        class="nav-link"
                         :class="{ active: $page.url === '/listing/offer' }"
                         :href="route(`listing.offer`)"
                     >
@@ -46,8 +46,8 @@
                         </div>
                     </Link>
                     <Link
+                        :href="route('profile')"
                         class="text-gray-500 text-sm"
-                        :href="route(`realtor.listing.index`)"
                     >
                         {{ user.name }}
                     </Link>
@@ -78,5 +78,5 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-defineProps({ user: Object, notificationCount: Number });
+defineProps({ user: Object, notificationCount: { type: Number, default: 0 } });
 </script>

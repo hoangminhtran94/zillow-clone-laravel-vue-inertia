@@ -1,59 +1,57 @@
 <template>
     <form @submit.prevent="signup">
-        <div class="w-1/2 mx-auto">
-            <div>
-                <label for="name" class="label">Name</label>
-                <input
-                    id="name"
-                    v-model="form.name"
+        <div class="w-1/2 mx-auto flex flex-col gap-2">
+            <Input
+                id="name"
+                v-model="form.name"
+                label="Name"
+                :error="form.errors?.name"
+            />
+            <Input
+                id="email"
+                v-model="form.email"
+                label="Email (username)"
+                type="email"
+                :error="form.errors?.email"
+            />
+            <Input
+                id="phone_number"
+                v-model="form.phone_number"
+                label="Phone number"
+                type="text"
+                :error="form.errors?.phone_number"
+            />
+            <div class="flex gap-2">
+                <Input
+                    id="address"
+                    v-model="form.address"
+                    class-name="flex-1"
+                    label="Address"
                     type="text"
-                    class="input"
+                    :error="form.errors?.address"
                 />
-                <div v-if="form.errors.name" class="input-error">
-                    {{ form.errors.name }}
-                </div>
-            </div>
-            <div class="mt-4">
-                <label for="email" class="label">Email (username)</label>
-                <input
-                    id="email"
-                    v-model="form.email"
+                <Input
+                    id="postal_code"
+                    v-model="form.postal_code"
+                    label="Postal code"
                     type="text"
-                    class="input"
+                    :error="form.errors?.postal_code"
                 />
-                <div v-if="form.errors.email" class="input-error">
-                    {{ form.errors.email }}
-                </div>
             </div>
-            <div class="mt-4">
-                <label for="password" class="label">Password</label>
-                <input
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="input"
-                />
-                <div v-if="form.errors.password" class="input-error">
-                    {{ form.errors.password }}
-                </div>
-            </div>
-            <div class="mt-4">
-                <label for="passwordConfirmation" class="label">
-                    Confirm Password
-                </label>
-                <input
-                    id="passwordConfirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="input"
-                />
-                <div
-                    v-if="form.errors.password_confirmation"
-                    class="input-error"
-                >
-                    {{ form.errors.password_confirmation }}
-                </div>
-            </div>
+            <Input
+                id="password"
+                v-model="form.password"
+                label="Password"
+                type="password"
+                :error="form.errors?.password"
+            />
+            <Input
+                id="passwordConfirmation"
+                v-model="form.password_confirmation"
+                label="Confirm Password"
+                type="password"
+                :error="form.errors?.password_confirmation"
+            />
             <div class="mt-4">
                 <button type="submit" class="btn-primary w-full">
                     Register
@@ -70,13 +68,17 @@
 
 <script setup>
 import { useForm, Link } from "@inertiajs/vue3";
-
+import Input from "../../Components/UI/Input.vue";
 const form = useForm({
     name: null,
     email: null,
+    phone_number: null,
+    address: null,
+    postal_code: null,
     password: null,
     password_confirmation: null,
 });
+
 // eslint-disable-next-line no-undef
 const signup = () => form.post(route(`user-account.store`));
 </script>

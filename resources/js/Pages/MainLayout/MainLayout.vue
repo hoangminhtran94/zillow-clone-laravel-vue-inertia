@@ -10,31 +10,20 @@
             </div>
             <slot></slot>
         </main>
-        <footer
-            class="border-gray-200 border-t dark:border-gray-700 flex px-10 py-3"
-        >
-            <div class="flex-1">Developed by Minh Hoang Tran</div>
-            <div class="flex-1">
-                <h2>Technology</h2>
-                <div class="flex gap-3">
-                    <span>Larvavel</span>
-                    <span>Inertia</span>
-                    <span>Vuejs</span>
-                </div>
-            </div>
-        </footer>
+        <Footer />
     </div>
 </template>
 
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
-import NavBar from "../Components/UI/NavBar.vue";
+import NavBar from "../../Components/UI/NavBar.vue";
+import Footer from "../../Components/UI/Footer.vue";
 
 const flashSuccess = computed(() => usePage().props.flash.success);
 
 const notificationCount = computed(() =>
-    Math.min(usePage().props.user.notificationCount, 9)
+    Math.min(usePage().props.user?.notificationCount, 9)
 );
 defineProps({ user: Object });
 </script>

@@ -32,6 +32,9 @@
     .btn-outline {
         @apply text-indigo-500 dark:text-gray-500 p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800;
     }
+    .nav-link {
+        @apply rounded dark:hover:bg-white hover:outline hover:scale-105 transition-all hover:outline-indigo-900 flex items-center whitespace-nowrap p-2 box-border text-base;
+    }
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -60,6 +63,10 @@ input[type="range"]::-ms-thumb {
     border-radius: 25px;
     background: #1d85ee;
     cursor: pointer;
+}
+
+h1 {
+    font-size: xx-large;
 }
 
 h2 {

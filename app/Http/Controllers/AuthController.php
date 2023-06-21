@@ -10,6 +10,12 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 
 {
+    public function index(Request $request)
+    {
+        $user = Auth::user();
+        return inertia("Profile/Index", ["user" => $user]);
+    }
+
     public function create()
     {
         return inertia("Auth/Login");
@@ -19,7 +25,7 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->validate([
             "email" => "required|string|email",
-            "password" => "required|string"
+            "password" => "required|string",
         ]), true)) {
             throw ValidationException::withMessages(["email" => "Authentication failed", "password" => "Authentication failed"]);
         }
