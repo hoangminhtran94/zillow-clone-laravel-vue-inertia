@@ -78,5 +78,6 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { onUpdated } from "vue";
 defineProps({ user: Object, notificationCount: { type: Number, default: 0 } });
 </script>

@@ -1,12 +1,10 @@
 <template>
     <div>
-        <div
-            v-if="offers.length === 0"
-            class="w-full h-[300px] shadow-md rounded p-4 flex justify-center items-center border border-indigo-200"
-        >
-            <h2 class="font-bold">You do not have any offer</h2>
-        </div>
-        <ul v-if="offers.length > 0">
+        <PlaceHolderBox v-if="offers.length === 0">
+            You do not have any offer
+        </PlaceHolderBox>
+
+        <ul v-else>
             <li v-for="(offer, index) in offers" v-bind:key="index">
                 {{ offer.amount }}
             </li>
@@ -15,6 +13,7 @@
 </template>
 
 <script setup>
+import PlaceHolderBox from "../../Components/UI/PlaceHolderBox.vue";
 defineProps({
     offers: Object,
 });

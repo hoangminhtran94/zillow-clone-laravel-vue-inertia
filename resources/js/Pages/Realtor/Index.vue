@@ -113,7 +113,7 @@
             </div>
         </Box>
     </section>
-    <EmptyState v-else>No listings yet</EmptyState>
+    <PlaceHolderBox v-else>No listings yet</PlaceHolderBox>
     <section v-if="listings.data.length > 0" class="flex justify-center mt-6">
         <Pagination :links="listings.links" />
     </section>
@@ -121,7 +121,7 @@
 
 <script setup>
 import Box from "../../Components/UI/Box.vue";
-import EmptyState from "../../Components/UI/EmptyState.vue";
+import PlaceHolderBox from "../../Components/UI/PlaceHolderBox.vue";
 import Price from "../../Components/Price.vue";
 import RealtorFilter from "./components/RealtorFilters.vue";
 import ListingAddress from "../../Components/ListingAddress.vue";

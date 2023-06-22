@@ -5,6 +5,7 @@
             :id="id"
             :value="modelValue"
             :type="type"
+            :placeholder="placeholder"
             class="input"
             @input="onChange"
         />
@@ -29,5 +30,6 @@ defineProps({
     className: { type: String, default: "" },
     error: { type: String, default: "" },
     type: { type: String, default: "text" },
+    placeholder: { type: String, default: "" },
 });
 </script>
