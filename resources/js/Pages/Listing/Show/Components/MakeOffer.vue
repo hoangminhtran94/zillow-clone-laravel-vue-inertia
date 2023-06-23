@@ -31,7 +31,6 @@ import Price from "../../../../Components/Price.vue";
 import { useForm } from "@inertiajs/vue3";
 import { round, debounce } from "lodash";
 import { watch } from "vue";
-const props = defineProps({ listing: Object, csrf_token: String });
 const form = useForm({
     amount: +props.listing.price,
     _token: props.csrf_token,
@@ -50,4 +49,5 @@ watch(
         emit("offerUpdated", value);
     }, 200)
 );
+const props = defineProps({ listing: Object, csrf_token: String });
 </script>
