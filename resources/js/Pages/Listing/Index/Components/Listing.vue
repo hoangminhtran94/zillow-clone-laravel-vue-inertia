@@ -1,7 +1,7 @@
 <template>
     <Box>
         <div>
-            <Link :href="route(`listing.show`, { listing: +listing.id })">
+            <Link :href="route(`listing.show`, { listing: listing.id })">
                 <div class="flex items-center gap-2">
                     <Price :price="listing.price" class="text-2xl font-bold" />
                     <div class="text-xs text-gray-500">

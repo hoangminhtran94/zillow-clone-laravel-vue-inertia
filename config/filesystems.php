@@ -30,19 +30,6 @@ return [
 
     'disks' => [
 
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-            'throw' => false,
-        ],
-
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/storage',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
 
         's3' => [
             'driver' => 's3',
@@ -55,6 +42,34 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+
+        'cloudinary' => [
+            'driver'         => 'cloudinary',
+            'api_key'        => env('CLOUDINARY_API_KEY'),
+            'api_secret'     => env('CLOUDINARY_API_SECRET'),
+            'cloud_name'     => env('CLOUDINARY_CLOUD_NAME'),
+            'secure'         => env('CLOUDINARY_SECURE', true),
+            'resource_types' => [
+                'image' => [
+                    'png',
+                    'jpeg',
+                    'jpg',
+                ],
+                'video' => [
+                    'mp4',
+                    'avi',
+                    'mp3',
+                    'flac',
+                ],
+                'raw'   => [
+                    'pdf',
+                    'xlsx',
+                    'csv',
+                    'txt',
+                ],
+            ],
+        ],
+
 
     ],
 

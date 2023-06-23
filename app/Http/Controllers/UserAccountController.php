@@ -21,16 +21,7 @@ class UserAccountController extends Controller
     {
 
         $file = $request->file("profile_image");
-        $path = "";
-        try {
-            $s3 = Storage::disk("s3");
-            $path = $s3->putFile("zillow-clone/public", $file);
-            dd([$path]);
-        } catch (Exception $e) {
-            \Log::error("Swomthing" . $e->getMessage());
-            dd('File upload failed: ' . $e->getMessage());
-            throw $e;
-        }
+        $path = Storage::putFile("zillow-clone/public", $file);
 
         $user = User::create($request->validate([
             "name" => "required",

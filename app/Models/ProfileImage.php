@@ -20,6 +20,6 @@ class ProfileImage extends Model
     }
     public function getSrcAttribute()
     {
-        return  Storage::disk('s3')->url($this->filename);
+        return  Storage::url($this->filename);
     }
 }

@@ -29,7 +29,7 @@ class RealtorListingImageController extends Controller
             $request->validate(["images.*" => "mimes:png,jpg,jpeg|max:5000"], ["images.*.mimes" => "File should be an image (jpg,jpeg,png)"]);
 
             foreach ($request->file("images") as $file) {
-                $path = Storage::disk("s3")->putFile("zillow-clone/public", $file);
+                $path = Storage::putFile("zillow-clone/public/listing", $file);
                 $listing->images()->save(new ListingImage(["filename" => $path]));
             }
         }
