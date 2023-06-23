@@ -81,10 +81,9 @@ const form = useForm({
     postal_code: null,
     password: null,
     password_confirmation: null,
-});
-onUpdated(() => {
-    console.log(form.profile_image);
+    _token: props.csrf_token,
 });
 // eslint-disable-next-line no-undef
 const signup = () => form.post(route(`user-account.store`));
+const props = defineProps({ csrf_token: String });
 </script>

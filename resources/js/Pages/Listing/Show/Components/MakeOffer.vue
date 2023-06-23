@@ -31,8 +31,11 @@ import Price from "../../../../Components/Price.vue";
 import { useForm } from "@inertiajs/vue3";
 import { round, debounce } from "lodash";
 import { watch } from "vue";
-const props = defineProps({ listing: Object });
-const form = useForm({ amount: +props.listing.price });
+const props = defineProps({ listing: Object, csrf_token: String });
+const form = useForm({
+    amount: +props.listing.price,
+    _token: props.csrf_token,
+});
 const makeOffer = () => {
     // eslint-disable-next-line no-undef
     form.post(route("listing.offer.store", { listing: props.listing.id }), {

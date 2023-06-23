@@ -53,7 +53,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-const props = defineProps({ filters: Object });
+const props = defineProps({ filters: Object, csrf_token: String });
 const form = useForm({
     priceFrom: props.filters.priceFrom ?? null,
     priceTo: props.filters.priceTo ?? null,
@@ -61,6 +61,7 @@ const form = useForm({
     baths: props.filters.beds ?? null,
     areaFrom: props.filters.areaFrom ?? null,
     areaTo: props.filters.areaTo ?? null,
+    _token: props.csrf_token,
 });
 const filter = () => {
     // eslint-disable-next-line no-undef

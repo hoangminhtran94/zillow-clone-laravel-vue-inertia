@@ -34,7 +34,7 @@ import { debounce } from "lodash";
 import { watch, computed, reactive } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-const props = defineProps({ filters: Object });
+const props = defineProps({ filters: Object, csrf_token: String });
 const sortLabels = {
     created_at: [
         {
@@ -67,6 +67,7 @@ const filterForm = useForm({
     deleted: props.filters.deleted ?? false,
     by: props.filters.by ?? "created_at",
     order: props.filters.order ?? "desc",
+    _token: props.csrf_token,
 });
 const deleted = computed(() => filterForm.deleted);
 const by = computed(() => filterForm.by);

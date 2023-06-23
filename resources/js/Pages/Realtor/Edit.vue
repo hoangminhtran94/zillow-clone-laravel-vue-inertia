@@ -78,7 +78,10 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-const props = defineProps({ listing: { type: Object, default: null } });
+const props = defineProps({
+    listing: { type: Object, default: null },
+    csrf_token: String,
+});
 
 const form = useForm({
     beds: props.listing.beds,
@@ -89,6 +92,7 @@ const form = useForm({
     code: props.listing.code,
     street_number: props.listing.street_number,
     price: props.listing.price,
+    _token: props.csrf_token,
 });
 const update = () =>
     // eslint-disable-next-line no-undef

@@ -68,8 +68,8 @@ router.on("progress", (event) => {
     }
 });
 
-const props = defineProps({ listing: Object });
-const form = useForm({ images: [] });
+const props = defineProps({ listing: Object, csrf_token: String });
+const form = useForm({ images: [], _token: props.csrf_token });
 const imageErrors = computed(() => Object.values(form.errors));
 const canUpload = computed(() => form.images.length > 0);
 const addFiles = (e) => {

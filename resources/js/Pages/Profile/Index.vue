@@ -161,10 +161,12 @@ const infoForm = useForm({
     phone_number: props.user.phone_number,
     address: props.user.address,
     postal_code: props.user.postal_code,
+    _token: props.csrf_token,
 });
 const passwordForm = useForm({
     password: "",
     password_confirmation: "",
+    _token: props.csrf_token,
 });
-const props = defineProps({ user: Object });
+const props = defineProps({ user: Object, csrf_token: String });
 </script>

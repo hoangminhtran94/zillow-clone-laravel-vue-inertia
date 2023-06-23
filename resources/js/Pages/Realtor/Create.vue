@@ -91,7 +91,9 @@ const form = useForm({
     code: null,
     street_number: null,
     price: null,
+    _token: props.csrf_token,
 });
 // eslint-disable-next-line no-undef
 const create = () => form.post(route("realtor.listing.store"));
+const props = defineProps({ csrf_token: String });
 </script>
