@@ -46,7 +46,10 @@ import { useForm, Link } from "@inertiajs/vue3";
 const form = useForm({
     email: null,
     password: null,
+    _token: props.csrf_token,
 });
+
 // eslint-disable-next-line no-undef
 const login = () => form.post(route(`login.store`));
+const props = defineProps({ csrf_token: String });
 </script>

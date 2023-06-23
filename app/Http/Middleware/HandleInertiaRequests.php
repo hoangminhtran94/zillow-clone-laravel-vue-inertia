@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
             "flash" => [
                 "success" => $request->session()->get("success")
             ],
+            'csrf_token' => csrf_token(),
             "user" => $request->user() ? [
                 "id" => $request->user()->id,
                 "name" => $request->user()->name,
