@@ -2,8 +2,7 @@
     "version": 2,
     "builds": [
         { "src": "/api/index.php", "use": "vercel-php@0.6.0" },
-        { "src": "/package.json", "use": "@vercel/node" },
-        { "src": "/*", "use": "npm run build" }
+        { "src": "/package.json", "use": "@vercel/node" }
     ],
     "routes": [
         {
