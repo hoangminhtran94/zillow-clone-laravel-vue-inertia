@@ -6,8 +6,16 @@
     ],
     "routes": [
         {
-            "src": "/(css|js|images)/(.*)",
-            "dest": "/public/$1/$2"
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
+        },
+        {
+            "src": "/resources/(.*)",
+            "dest": "/public/resources/"
+        },
+        {
+            "src": "/favicon/(.*)",
+            "dest": "/public/favicon/"
         },
         {
             "src": "/(.*)",
