@@ -7,11 +7,19 @@
     "routes": [
         {
             "src": "/(css|js|images)/(.*)",
-            "dest": "public/$1/$2"
+            "dest": "public/$1/$2",
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload"
+            }
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/api/index.php",
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload"
+            }
         }
     ],
     "env": {
