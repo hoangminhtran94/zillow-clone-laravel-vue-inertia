@@ -20,8 +20,4 @@ export default defineConfig({
             ziggy: path.resolve("vendor/tightenco/ziggy/dist/vue.es.js"),
         },
     },
-    server: {
-        port: 8098,
-        host: "localhost",
-    },
 });

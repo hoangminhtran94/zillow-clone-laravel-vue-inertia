@@ -7,17 +7,11 @@
     "routes": [
         {
             "src": "/(css|js|images)/(.*)",
-            "dest": "public/$1/$2",
-            "headers": {
-                "Content-Security-Policy": "upgrade-insecure-requests"
-            }
+            "dest": "public/$1/$2"
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php",
-            "headers": {
-                "Content-Security-Policy": "upgrade-insecure-requests"
-            }
+            "dest": "/api/index.php"
         }
     ],
     "env": {
