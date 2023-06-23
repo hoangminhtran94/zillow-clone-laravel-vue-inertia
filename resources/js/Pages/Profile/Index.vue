@@ -10,7 +10,7 @@
             class="flex flex-col justify-center items-center gap-6"
         >
             <img
-                :src="user.profile_image.src"
+                :src="user.profile_image?.src"
                 alt="profile-image"
                 class="w-[200px] h-[200px] border border-indigo-300 object-cover rounded-full shadow-md"
             />

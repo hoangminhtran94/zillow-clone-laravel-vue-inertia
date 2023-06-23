@@ -7,6 +7,7 @@ use App\Models\Listing;
 use App\Models\ListingImage;
 use Illuminate\Support\Facades\Storage;
 
+
 class RealtorListingImageController extends Controller
 {
     // public function __construct()
@@ -28,7 +29,7 @@ class RealtorListingImageController extends Controller
             $request->validate(["images.*" => "mimes:png,jpg,jpeg|max:5000"], ["images.*.mimes" => "File should be an image (jpg,jpeg,png)"]);
 
             foreach ($request->file("images") as $file) {
-                $path = $file->store("images", "public");
+                $path = Storage::disk("s3")->putFile("zillow-clone/public", $file);
                 $listing->images()->save(new ListingImage(["filename" => $path]));
             }
         }
@@ -36,8 +37,7 @@ class RealtorListingImageController extends Controller
     }
     public function destroy(Listing $listing, ListingImage $image)
     {
-        Storage::disk("public")->delete($image->filename);
-        $image->delete();
+        Storage::disk("s3")->delete($image->filename);
         return redirect()->back()->with(["success" => "Deleted successfully"]);
     }
 }

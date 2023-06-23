@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.4.1.
+ * Generated for Laravel 10.13.5.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1762,7 +1762,7 @@
                     /**
          * Set the Artisan application instance.
          *
-         * @param \Illuminate\Console\Application $artisan
+         * @param \Illuminate\Console\Application|null $artisan
          * @return void 
          * @static 
          */ 
@@ -3333,13 +3333,13 @@
          * Specify the jobs that should be dispatched instead of faked.
          *
          * @param array|string $jobsToDispatch
-         * @return void 
+         * @return \Illuminate\Support\Testing\Fakes\BusFake 
          * @static 
          */ 
         public static function except($jobsToDispatch)
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
-                        $instance->except($jobsToDispatch);
+                        return $instance->except($jobsToDispatch);
         }
                     /**
          * Assert if a job was dispatched based on a truth-test callback.
@@ -3768,6 +3768,18 @@
         {
                         /** @var \Illuminate\Cache\CacheManager $instance */
                         return $instance->extend($driver, $callback);
+        }
+                    /**
+         * Set the application instance used by the manager.
+         *
+         * @param \Illuminate\Contracts\Foundation\Application $app
+         * @return \Illuminate\Cache\CacheManager 
+         * @static 
+         */ 
+        public static function setApplication($app)
+        {
+                        /** @var \Illuminate\Cache\CacheManager $instance */
+                        return $instance->setApplication($app);
         }
                     /**
          * Determine if an item exists in the cache.
@@ -4329,6 +4341,18 @@
         {
                         /** @var \Illuminate\Cache\FileStore $instance */
                         return $instance->getDirectory();
+        }
+                    /**
+         * Set the cache directory where locks should be stored.
+         *
+         * @param string|null $lockDirectory
+         * @return \Illuminate\Cache\FileStore 
+         * @static 
+         */ 
+        public static function setLockDirectory($lockDirectory)
+        {
+                        /** @var \Illuminate\Cache\FileStore $instance */
+                        return $instance->setLockDirectory($lockDirectory);
         }
                     /**
          * Get the cache key prefix.
@@ -5224,25 +5248,14 @@
                         return $instance->macroCall($method, $parameters);
         }
                     /**
-         * Determine if the connected database is a MariaDB database.
-         *
-         * @return bool 
-         * @static 
-         */ 
-        public static function isMaria()
-        {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
-                        return $instance->isMaria();
-        }
-                    /**
          * Get a schema builder instance for the connection.
          *
-         * @return \Illuminate\Database\Schema\MySqlBuilder 
+         * @return \Illuminate\Database\Schema\PostgresBuilder 
          * @static 
          */ 
         public static function getSchemaBuilder()
         {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getSchemaBuilder();
         }
                     /**
@@ -5250,12 +5263,12 @@
          *
          * @param \Illuminate\Filesystem\Filesystem|null $files
          * @param callable|null $processFactory
-         * @return \Illuminate\Database\Schema\MySqlSchemaState 
+         * @return \Illuminate\Database\Schema\PostgresSchemaState 
          * @static 
          */ 
         public static function getSchemaState($files = null, $processFactory = null)
         {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getSchemaState($files, $processFactory);
         }
                     /**
@@ -5266,7 +5279,7 @@
          */ 
         public static function useDefaultQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->useDefaultQueryGrammar();
         }
                     /**
@@ -5277,7 +5290,7 @@
          */ 
         public static function useDefaultSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->useDefaultSchemaGrammar();
         }
                     /**
@@ -5288,20 +5301,20 @@
          */ 
         public static function useDefaultPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->useDefaultPostProcessor();
         }
                     /**
          * Begin a fluent query against a database table.
          *
-         * @param \Closure|\Illuminate\Database\Query\Builder|string $table
+         * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Contracts\Database\Query\Expression|string $table
          * @param string|null $as
          * @return \Illuminate\Database\Query\Builder 
          * @static 
          */ 
         public static function table($table, $as = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->table($table, $as);
         }
                     /**
@@ -5312,7 +5325,7 @@
          */ 
         public static function query()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->query();
         }
                     /**
@@ -5326,7 +5339,7 @@
          */ 
         public static function selectOne($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->selectOne($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5341,7 +5354,7 @@
          */ 
         public static function scalar($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->scalar($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5354,7 +5367,7 @@
          */ 
         public static function selectFromWriteConnection($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->selectFromWriteConnection($query, $bindings);
         }
                     /**
@@ -5368,8 +5381,22 @@
          */ 
         public static function select($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->select($query, $bindings, $useReadPdo);
+        }
+                    /**
+         * Run a select statement against the database and returns all of the result sets.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return array 
+         * @static 
+         */ 
+        public static function selectResultSets($query, $bindings = [], $useReadPdo = true)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
+                        return $instance->selectResultSets($query, $bindings, $useReadPdo);
         }
                     /**
          * Run a select statement against the database and returns a generator.
@@ -5382,7 +5409,7 @@
          */ 
         public static function cursor($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->cursor($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5395,7 +5422,7 @@
          */ 
         public static function insert($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->insert($query, $bindings);
         }
                     /**
@@ -5408,7 +5435,7 @@
          */ 
         public static function update($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->update($query, $bindings);
         }
                     /**
@@ -5421,7 +5448,7 @@
          */ 
         public static function delete($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->delete($query, $bindings);
         }
                     /**
@@ -5434,7 +5461,7 @@
          */ 
         public static function statement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->statement($query, $bindings);
         }
                     /**
@@ -5447,7 +5474,7 @@
          */ 
         public static function affectingStatement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->affectingStatement($query, $bindings);
         }
                     /**
@@ -5459,7 +5486,7 @@
          */ 
         public static function unprepared($query)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->unprepared($query);
         }
                     /**
@@ -5471,7 +5498,7 @@
          */ 
         public static function pretend($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->pretend($callback);
         }
                     /**
@@ -5484,7 +5511,7 @@
          */ 
         public static function bindValues($statement, $bindings)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->bindValues($statement, $bindings);
         }
                     /**
@@ -5496,7 +5523,7 @@
          */ 
         public static function prepareBindings($bindings)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->prepareBindings($bindings);
         }
                     /**
@@ -5510,7 +5537,7 @@
          */ 
         public static function logQuery($query, $bindings, $time = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->logQuery($query, $bindings, $time);
         }
                     /**
@@ -5523,7 +5550,7 @@
          */ 
         public static function whenQueryingForLongerThan($threshold, $handler)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->whenQueryingForLongerThan($threshold, $handler);
         }
                     /**
@@ -5534,7 +5561,7 @@
          */ 
         public static function allowQueryDurationHandlersToRunAgain()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->allowQueryDurationHandlersToRunAgain();
         }
                     /**
@@ -5545,7 +5572,7 @@
          */ 
         public static function totalQueryDuration()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->totalQueryDuration();
         }
                     /**
@@ -5556,7 +5583,7 @@
          */ 
         public static function resetTotalQueryDuration()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->resetTotalQueryDuration();
         }
                     /**
@@ -5567,19 +5594,19 @@
          */ 
         public static function reconnectIfMissingConnection()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->reconnectIfMissingConnection();
         }
                     /**
          * Register a hook to be run just before a database query is executed.
          *
          * @param \Closure $callback
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function beforeExecuting($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->beforeExecuting($callback);
         }
                     /**
@@ -5591,7 +5618,7 @@
          */ 
         public static function listen($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->listen($callback);
         }
                     /**
@@ -5603,8 +5630,21 @@
          */ 
         public static function raw($value)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->raw($value);
+        }
+                    /**
+         * Escape a value for safe SQL embedding.
+         *
+         * @param string|float|int|bool|null $value
+         * @param bool $binary
+         * @return string 
+         * @static 
+         */ 
+        public static function escape($value, $binary = false)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
+                        return $instance->escape($value, $binary);
         }
                     /**
          * Determine if the database connection has modified any database records.
@@ -5614,7 +5654,7 @@
          */ 
         public static function hasModifiedRecords()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->hasModifiedRecords();
         }
                     /**
@@ -5626,19 +5666,19 @@
          */ 
         public static function recordsHaveBeenModified($value = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->recordsHaveBeenModified($value);
         }
                     /**
          * Set the record modification state.
          *
          * @param bool $value
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setRecordModificationState($value)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setRecordModificationState($value);
         }
                     /**
@@ -5649,19 +5689,19 @@
          */ 
         public static function forgetRecordModificationState()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->forgetRecordModificationState();
         }
                     /**
          * Indicate that the connection should use the write PDO connection for reads.
          *
          * @param bool $value
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function useWriteConnectionWhenReading($value = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->useWriteConnectionWhenReading($value);
         }
                     /**
@@ -5672,7 +5712,7 @@
          */ 
         public static function isDoctrineAvailable()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->isDoctrineAvailable();
         }
                     /**
@@ -5683,7 +5723,7 @@
          */ 
         public static function usingNativeSchemaOperations()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->usingNativeSchemaOperations();
         }
                     /**
@@ -5696,7 +5736,7 @@
          */ 
         public static function getDoctrineColumn($table, $column)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getDoctrineColumn($table, $column);
         }
                     /**
@@ -5707,7 +5747,7 @@
          */ 
         public static function getDoctrineSchemaManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getDoctrineSchemaManager();
         }
                     /**
@@ -5718,7 +5758,7 @@
          */ 
         public static function getDoctrineConnection()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getDoctrineConnection();
         }
                     /**
@@ -5729,7 +5769,7 @@
          */ 
         public static function getPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getPdo();
         }
                     /**
@@ -5740,7 +5780,7 @@
          */ 
         public static function getRawPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getRawPdo();
         }
                     /**
@@ -5751,7 +5791,7 @@
          */ 
         public static function getReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getReadPdo();
         }
                     /**
@@ -5762,31 +5802,31 @@
          */ 
         public static function getRawReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getRawReadPdo();
         }
                     /**
          * Set the PDO connection.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setPdo($pdo);
         }
                     /**
          * Set the PDO connection used for reading.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setReadPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setReadPdo($pdo);
         }
                     /**
@@ -5797,7 +5837,7 @@
          */ 
         public static function getName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getName();
         }
                     /**
@@ -5808,7 +5848,7 @@
          */ 
         public static function getNameWithReadWriteType()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getNameWithReadWriteType();
         }
                     /**
@@ -5820,7 +5860,7 @@
          */ 
         public static function getConfig($option = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getConfig($option);
         }
                     /**
@@ -5831,7 +5871,7 @@
          */ 
         public static function getDriverName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getDriverName();
         }
                     /**
@@ -5842,19 +5882,19 @@
          */ 
         public static function getQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getQueryGrammar();
         }
                     /**
          * Set the query grammar used by the connection.
          *
          * @param \Illuminate\Database\Query\Grammars\Grammar $grammar
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setQueryGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setQueryGrammar($grammar);
         }
                     /**
@@ -5865,19 +5905,19 @@
          */ 
         public static function getSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getSchemaGrammar();
         }
                     /**
          * Set the schema grammar used by the connection.
          *
          * @param \Illuminate\Database\Schema\Grammars\Grammar $grammar
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setSchemaGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setSchemaGrammar($grammar);
         }
                     /**
@@ -5888,19 +5928,19 @@
          */ 
         public static function getPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getPostProcessor();
         }
                     /**
          * Set the query post processor used by the connection.
          *
          * @param \Illuminate\Database\Query\Processors\Processor $processor
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setPostProcessor($processor)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setPostProcessor($processor);
         }
                     /**
@@ -5911,19 +5951,19 @@
          */ 
         public static function getEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getEventDispatcher();
         }
                     /**
          * Set the event dispatcher instance on the connection.
          *
          * @param \Illuminate\Contracts\Events\Dispatcher $events
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setEventDispatcher($events)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setEventDispatcher($events);
         }
                     /**
@@ -5934,19 +5974,19 @@
          */ 
         public static function unsetEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->unsetEventDispatcher();
         }
                     /**
          * Set the transaction manager instance on the connection.
          *
          * @param \Illuminate\Database\DatabaseTransactionsManager $manager
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setTransactionManager($manager)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setTransactionManager($manager);
         }
                     /**
@@ -5957,7 +5997,7 @@
          */ 
         public static function unsetTransactionManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->unsetTransactionManager();
         }
                     /**
@@ -5968,7 +6008,7 @@
          */ 
         public static function pretending()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->pretending();
         }
                     /**
@@ -5979,7 +6019,7 @@
          */ 
         public static function getQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getQueryLog();
         }
                     /**
@@ -5990,7 +6030,7 @@
          */ 
         public static function flushQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->flushQueryLog();
         }
                     /**
@@ -6001,7 +6041,7 @@
          */ 
         public static function enableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->enableQueryLog();
         }
                     /**
@@ -6012,7 +6052,7 @@
          */ 
         public static function disableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->disableQueryLog();
         }
                     /**
@@ -6023,7 +6063,7 @@
          */ 
         public static function logging()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->logging();
         }
                     /**
@@ -6034,31 +6074,31 @@
          */ 
         public static function getDatabaseName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getDatabaseName();
         }
                     /**
          * Set the name of the connected database.
          *
          * @param string $database
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setDatabaseName($database)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setDatabaseName($database);
         }
                     /**
          * Set the read / write type of the connection.
          *
          * @param string|null $readWriteType
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setReadWriteType($readWriteType)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setReadWriteType($readWriteType);
         }
                     /**
@@ -6069,19 +6109,19 @@
          */ 
         public static function getTablePrefix()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->getTablePrefix();
         }
                     /**
          * Set the table prefix in use by the connection.
          *
          * @param string $prefix
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \YlsIdeas\CockroachDb\CockroachDbConnection 
          * @static 
          */ 
         public static function setTablePrefix($prefix)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->setTablePrefix($prefix);
         }
                     /**
@@ -6093,7 +6133,7 @@
          */ 
         public static function withTablePrefix($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->withTablePrefix($grammar);
         }
                     /**
@@ -6106,7 +6146,7 @@
          */ 
         public static function resolverFor($driver, $callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        \Illuminate\Database\MySqlConnection::resolverFor($driver, $callback);
+                        \YlsIdeas\CockroachDb\CockroachDbConnection::resolverFor($driver, $callback);
         }
                     /**
          * Get the connection resolver for the given driver.
@@ -6117,7 +6157,7 @@
          */ 
         public static function getResolver($driver)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        return \Illuminate\Database\MySqlConnection::getResolver($driver);
+                        return \YlsIdeas\CockroachDb\CockroachDbConnection::getResolver($driver);
         }
                     /**
          * Execute a Closure within a transaction.
@@ -6130,7 +6170,7 @@
          */ 
         public static function transaction($callback, $attempts = 1)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->transaction($callback, $attempts);
         }
                     /**
@@ -6142,7 +6182,7 @@
          */ 
         public static function beginTransaction()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->beginTransaction();
         }
                     /**
@@ -6154,7 +6194,7 @@
          */ 
         public static function commit()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->commit();
         }
                     /**
@@ -6167,7 +6207,7 @@
          */ 
         public static function rollBack($toLevel = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->rollBack($toLevel);
         }
                     /**
@@ -6178,7 +6218,7 @@
          */ 
         public static function transactionLevel()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         return $instance->transactionLevel();
         }
                     /**
@@ -6191,7 +6231,7 @@
          */ 
         public static function afterCommit($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \YlsIdeas\CockroachDb\CockroachDbConnection $instance */
                         $instance->afterCommit($callback);
         }
          
@@ -6584,15 +6624,16 @@
          * Get the contents of a file as decoded JSON.
          *
          * @param string $path
+         * @param int $flags
          * @param bool $lock
          * @return array 
          * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
          * @static 
          */ 
-        public static function json($path, $lock = false)
+        public static function json($path, $flags = 0, $lock = false)
         {
                         /** @var \Illuminate\Filesystem\Filesystem $instance */
-                        return $instance->json($path, $lock);
+                        return $instance->json($path, $flags, $lock);
         }
                     /**
          * Get contents of a file with shared access.
@@ -7640,6 +7681,18 @@
                         return $instance->needsRehash($hashedValue, $options);
         }
                     /**
+         * Determine if a given string is already hashed.
+         *
+         * @param string $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function isHashed($value)
+        {
+                        /** @var \Illuminate\Hashing\HashManager $instance */
+                        return $instance->isHashed($value);
+        }
+                    /**
          * Get the default driver name.
          *
          * @return string 
@@ -7737,6 +7790,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest acceptJson()
      * @method static \Illuminate\Http\Client\PendingRequest accept(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest withHeaders(array $headers)
+     * @method static \Illuminate\Http\Client\PendingRequest replaceHeaders(array $headers)
      * @method static \Illuminate\Http\Client\PendingRequest withBasicAuth(string $username, string $password)
      * @method static \Illuminate\Http\Client\PendingRequest withDigestAuth(string $username, string $password)
      * @method static \Illuminate\Http\Client\PendingRequest withToken(string $token, string $type = 'Bearer')
@@ -7749,7 +7803,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
      * @method static \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
      * @method static \Illuminate\Http\Client\PendingRequest connectTimeout(int $seconds)
-     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleepMilliseconds = 0, callable|null $when = null, bool $throw = true)
+     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, Closure|int $sleepMilliseconds = 0, callable|null $when = null, bool $throw = true)
      * @method static \Illuminate\Http\Client\PendingRequest withOptions(array $options)
      * @method static \Illuminate\Http\Client\PendingRequest withMiddleware(callable $middleware)
      * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
@@ -9476,6 +9530,8 @@
      * @method static \Illuminate\Contracts\Process\ProcessResult run(array|string|null $command = null, callable|null $output = null)
      * @method static \Illuminate\Process\InvokedProcess start(array|string|null $command = null, callable $output = null)
      * @method static \Illuminate\Process\PendingProcess withFakeHandlers(array $fakeHandlers)
+     * @method static \Illuminate\Process\PendingProcess|mixed when(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
+     * @method static \Illuminate\Process\PendingProcess|mixed unless(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
      * @see \Illuminate\Process\PendingProcess
      * @see \Illuminate\Process\Factory
      */ 
@@ -9660,6 +9716,18 @@
         {
                         /** @var \Illuminate\Process\Factory $instance */
                         return $instance->pool($callback);
+        }
+                    /**
+         * Start defining a series of piped processes.
+         *
+         * @param callable|array $callback
+         * @return \Illuminate\Contracts\Process\ProcessResult 
+         * @static 
+         */ 
+        public static function pipe($callback, $output = null)
+        {
+                        /** @var \Illuminate\Process\Factory $instance */
+                        return $instance->pipe($callback, $output);
         }
                     /**
          * Run a pool of processes and wait for them to finish executing.
@@ -10313,7 +10381,7 @@
          * Get the given named rate limiter.
          *
          * @param string $name
-         * @return \Closure 
+         * @return \Closure|null 
          * @static 
          */ 
         public static function limiter($name)
@@ -11344,12 +11412,13 @@
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
          * @param string|resource|null $content The raw body data
+         * @return void 
          * @static 
          */ 
         public static function initialize($query = [], $request = [], $attributes = [], $cookies = [], $files = [], $server = [], $content = null)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->initialize($query, $request, $attributes, $cookies, $files, $server, $content);
+                        $instance->initialize($query, $request, $attributes, $cookies, $files, $server, $content);
         }
                     /**
          * Creates a new request with values from PHP's super globals.
@@ -11386,11 +11455,12 @@
          * to keep BC with an existing system. It should not be used for any
          * other purpose.
          *
+         * @return void 
          * @static 
          */ 
         public static function setFactory($callable)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
-                        return \Illuminate\Http\Request::setFactory($callable);
+                        \Illuminate\Http\Request::setFactory($callable);
         }
                     /**
          * Overrides the PHP global variables according to this request instance.
@@ -11398,12 +11468,13 @@
          * It overrides $_GET, $_POST, $_REQUEST, $_SERVER, $_COOKIE.
          * $_FILES is never overridden, see rfc1867
          *
+         * @return void 
          * @static 
          */ 
         public static function overrideGlobals()
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->overrideGlobals();
+                        $instance->overrideGlobals();
         }
                     /**
          * Sets a list of trusted proxies.
@@ -11412,11 +11483,12 @@
          *
          * @param array $proxies A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR']
          * @param int $trustedHeaderSet A bit field of Request::HEADER_*, to set which headers to trust from your proxies
+         * @return void 
          * @static 
          */ 
         public static function setTrustedProxies($proxies, $trustedHeaderSet)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
-                        return \Illuminate\Http\Request::setTrustedProxies($proxies, $trustedHeaderSet);
+                        \Illuminate\Http\Request::setTrustedProxies($proxies, $trustedHeaderSet);
         }
                     /**
          * Gets the list of trusted proxies.
@@ -11444,11 +11516,12 @@
          * You should only list the hosts you manage using regexs.
          *
          * @param array $hostPatterns A list of trusted host patterns
+         * @return void 
          * @static 
          */ 
         public static function setTrustedHosts($hostPatterns)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
-                        return \Illuminate\Http\Request::setTrustedHosts($hostPatterns);
+                        \Illuminate\Http\Request::setTrustedHosts($hostPatterns);
         }
                     /**
          * Gets the list of trusted host patterns.
@@ -11483,11 +11556,12 @@
          * 
          * The HTTP method can only be overridden when the real HTTP method is POST.
          *
+         * @return void 
          * @static 
          */ 
         public static function enableHttpMethodParameterOverride()
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
-                        return \Illuminate\Http\Request::enableHttpMethodParameterOverride();
+                        \Illuminate\Http\Request::enableHttpMethodParameterOverride();
         }
                     /**
          * Checks whether support for the _method request parameter is enabled.
@@ -11512,12 +11586,13 @@
                     /**
          * 
          *
+         * @return void 
          * @static 
          */ 
         public static function setSession($session)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setSession($session);
+                        $instance->setSession($session);
         }
                     /**
          * 
@@ -11818,12 +11893,13 @@
                     /**
          * Sets the request method.
          *
+         * @return void 
          * @static 
          */ 
         public static function setMethod($method)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setMethod($method);
+                        $instance->setMethod($method);
         }
                     /**
          * Gets the request "intended" method.
@@ -11889,12 +11965,13 @@
          * Associates a format with mime types.
          *
          * @param string|string[] $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
+         * @return void 
          * @static 
          */ 
         public static function setFormat($format, $mimeTypes)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setFormat($format, $mimeTypes);
+                        $instance->setFormat($format, $mimeTypes);
         }
                     /**
          * Gets the request format.
@@ -11916,12 +11993,13 @@
                     /**
          * Sets the request format.
          *
+         * @return void 
          * @static 
          */ 
         public static function setRequestFormat($format)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setRequestFormat($format);
+                        $instance->setRequestFormat($format);
         }
                     /**
          * Gets the usual name of the format associated with the request's media type (provided in the Content-Type header).
@@ -11948,12 +12026,13 @@
                     /**
          * Sets the default locale.
          *
+         * @return void 
          * @static 
          */ 
         public static function setDefaultLocale($locale)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setDefaultLocale($locale);
+                        $instance->setDefaultLocale($locale);
         }
                     /**
          * Get the default locale.
@@ -11968,12 +12047,13 @@
                     /**
          * Sets the locale.
          *
+         * @return void 
          * @static 
          */ 
         public static function setLocale($locale)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->setLocale($locale);
+                        $instance->setLocale($locale);
         }
                     /**
          * Get the locale.
@@ -12056,6 +12136,16 @@
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getContent($asResource);
+        }
+                    /**
+         * Gets the decoded form or json request body.
+         *
+         * @static 
+         */ 
+        public static function getPayload()
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->getPayload();
         }
                     /**
          * Gets the Etags.
@@ -14226,8 +14316,8 @@
          * @static 
          */ 
         public static function createDatabase($name)
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->createDatabase($name);
         }
                     /**
@@ -14238,8 +14328,8 @@
          * @static 
          */ 
         public static function dropDatabaseIfExists($name)
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->dropDatabaseIfExists($name);
         }
                     /**
@@ -14250,21 +14340,9 @@
          * @static 
          */ 
         public static function hasTable($table)
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->hasTable($table);
-        }
-                    /**
-         * Get the column listing for a given table.
-         *
-         * @param string $table
-         * @return array 
-         * @static 
-         */ 
-        public static function getColumnListing($table)
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnListing($table);
         }
                     /**
          * Drop all tables from the database.
@@ -14273,8 +14351,8 @@
          * @static 
          */ 
         public static function dropAllTables()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->dropAllTables();
         }
                     /**
@@ -14284,9 +14362,20 @@
          * @static 
          */ 
         public static function dropAllViews()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->dropAllViews();
+        }
+                    /**
+         * Drop all types from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllTypes()
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
+                        $instance->dropAllTypes();
         }
                     /**
          * Get all of the table names for the database.
@@ -14295,8 +14384,8 @@
          * @static 
          */ 
         public static function getAllTables()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->getAllTables();
         }
                     /**
@@ -14306,9 +14395,32 @@
          * @static 
          */ 
         public static function getAllViews()
-        {
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->getAllViews();
+        }
+                    /**
+         * Get all of the type names for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllTypes()
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
+                        return $instance->getAllTypes();
+        }
+                    /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumnListing($table)
+        {            //Method inherited from \Illuminate\Database\Schema\PostgresBuilder         
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
+                        return $instance->getColumnListing($table);
         }
                     /**
          * Set the default string length for migrations.
@@ -14319,7 +14431,7 @@
          */ 
         public static function defaultStringLength($length)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Illuminate\Database\Schema\MySqlBuilder::defaultStringLength($length);
+                        \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder::defaultStringLength($length);
         }
                     /**
          * Set the default morph key type for migrations.
@@ -14331,7 +14443,7 @@
          */ 
         public static function defaultMorphKeyType($type)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Illuminate\Database\Schema\MySqlBuilder::defaultMorphKeyType($type);
+                        \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder::defaultMorphKeyType($type);
         }
                     /**
          * Set the default morph key type for migrations to UUIDs.
@@ -14341,7 +14453,7 @@
          */ 
         public static function morphUsingUuids()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Illuminate\Database\Schema\MySqlBuilder::morphUsingUuids();
+                        \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder::morphUsingUuids();
         }
                     /**
          * Set the default morph key type for migrations to ULIDs.
@@ -14351,7 +14463,7 @@
          */ 
         public static function morphUsingUlids()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Illuminate\Database\Schema\MySqlBuilder::morphUsingUlids();
+                        \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder::morphUsingUlids();
         }
                     /**
          * Attempt to use native schema operations for dropping, renaming, and modifying columns, even if Doctrine DBAL is installed.
@@ -14362,7 +14474,7 @@
          */ 
         public static function useNativeSchemaOperationsIfPossible($value = true)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Illuminate\Database\Schema\MySqlBuilder::useNativeSchemaOperationsIfPossible($value);
+                        \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder::useNativeSchemaOperationsIfPossible($value);
         }
                     /**
          * Determine if the given table has a given column.
@@ -14374,7 +14486,7 @@
          */ 
         public static function hasColumn($table, $column)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->hasColumn($table, $column);
         }
                     /**
@@ -14387,7 +14499,7 @@
          */ 
         public static function hasColumns($table, $columns)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->hasColumns($table, $columns);
         }
                     /**
@@ -14401,7 +14513,7 @@
          */ 
         public static function whenTableHasColumn($table, $column, $callback)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->whenTableHasColumn($table, $column, $callback);
         }
                     /**
@@ -14415,7 +14527,7 @@
          */ 
         public static function whenTableDoesntHaveColumn($table, $column, $callback)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->whenTableDoesntHaveColumn($table, $column, $callback);
         }
                     /**
@@ -14428,7 +14540,7 @@
          */ 
         public static function getColumnType($table, $column)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->getColumnType($table, $column);
         }
                     /**
@@ -14441,7 +14553,7 @@
          */ 
         public static function table($table, $callback)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->table($table, $callback);
         }
                     /**
@@ -14454,7 +14566,7 @@
          */ 
         public static function create($table, $callback)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->create($table, $callback);
         }
                     /**
@@ -14466,7 +14578,7 @@
          */ 
         public static function drop($table)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->drop($table);
         }
                     /**
@@ -14478,7 +14590,7 @@
          */ 
         public static function dropIfExists($table)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->dropIfExists($table);
         }
                     /**
@@ -14491,20 +14603,8 @@
          */ 
         public static function dropColumns($table, $columns)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->dropColumns($table, $columns);
-        }
-                    /**
-         * Drop all types from the database.
-         *
-         * @return void 
-         * @throws \LogicException
-         * @static 
-         */ 
-        public static function dropAllTypes()
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        $instance->dropAllTypes();
         }
                     /**
          * Rename a table on the schema.
@@ -14516,7 +14616,7 @@
          */ 
         public static function rename($from, $to)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->rename($from, $to);
         }
                     /**
@@ -14527,7 +14627,7 @@
          */ 
         public static function enableForeignKeyConstraints()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->enableForeignKeyConstraints();
         }
                     /**
@@ -14538,7 +14638,7 @@
          */ 
         public static function disableForeignKeyConstraints()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->disableForeignKeyConstraints();
         }
                     /**
@@ -14550,7 +14650,7 @@
          */ 
         public static function withoutForeignKeyConstraints($callback)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->withoutForeignKeyConstraints($callback);
         }
                     /**
@@ -14561,19 +14661,19 @@
          */ 
         public static function getConnection()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->getConnection();
         }
                     /**
          * Set the database connection instance.
          *
          * @param \Illuminate\Database\Connection $connection
-         * @return \Illuminate\Database\Schema\MySqlBuilder 
+         * @return \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder 
          * @static 
          */ 
         public static function setConnection($connection)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         return $instance->setConnection($connection);
         }
                     /**
@@ -14585,7 +14685,7 @@
          */ 
         public static function blueprintResolver($resolver)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        /** @var \YlsIdeas\CockroachDb\Builder\CockroachDbBuilder $instance */
                         $instance->blueprintResolver($resolver);
         }
          
@@ -15322,7 +15422,7 @@
          * Get a filesystem instance.
          *
          * @param string|null $name
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function drive($name = null)
@@ -15334,7 +15434,7 @@
          * Get a filesystem instance.
          *
          * @param string|null $name
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function disk($name = null)
@@ -15345,7 +15445,7 @@
                     /**
          * Get a default cloud filesystem instance.
          *
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function cloud()
@@ -15357,7 +15457,7 @@
          * Build an on-demand disk.
          *
          * @param string|array $config
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function build($config)
@@ -15369,7 +15469,7 @@
          * Create an instance of the local driver.
          *
          * @param array $config
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function createLocalDriver($config)
@@ -15381,7 +15481,7 @@
          * Create an instance of the ftp driver.
          *
          * @param array $config
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function createFtpDriver($config)
@@ -15393,7 +15493,7 @@
          * Create an instance of the sftp driver.
          *
          * @param array $config
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function createSftpDriver($config)
@@ -15417,7 +15517,7 @@
          * Create a scoped driver.
          *
          * @param array $config
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function createScopedDriver($config)
@@ -15510,40 +15610,103 @@
                         return $instance->setApplication($app);
         }
                     /**
+         * Get the URL for the file at the given path.
+         *
+         * @param string $path
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */ 
+        public static function url($path)
+        {
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->url($path);
+        }
+                    /**
+         * Determine if temporary URLs can be generated.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function providesTemporaryUrls()
+        {
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->providesTemporaryUrls();
+        }
+                    /**
+         * Get a temporary URL for the file at the given path.
+         *
+         * @param string $path
+         * @param \DateTimeInterface $expiration
+         * @param array $options
+         * @return string 
+         * @static 
+         */ 
+        public static function temporaryUrl($path, $expiration, $options = [])
+        {
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->temporaryUrl($path, $expiration, $options);
+        }
+                    /**
+         * Get a temporary upload URL for the file at the given path.
+         *
+         * @param string $path
+         * @param \DateTimeInterface $expiration
+         * @param array $options
+         * @return array 
+         * @static 
+         */ 
+        public static function temporaryUploadUrl($path, $expiration, $options = [])
+        {
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->temporaryUploadUrl($path, $expiration, $options);
+        }
+                    /**
+         * Get the underlying S3 client.
+         *
+         * @return \Aws\S3\S3Client 
+         * @static 
+         */ 
+        public static function getClient()
+        {
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->getClient();
+        }
+                    /**
          * Assert that the given file or directory exists.
          *
          * @param string|array $path
          * @param string|null $content
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function assertExists($path, $content = null)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->assertExists($path, $content);
         }
                     /**
          * Assert that the given file or directory does not exist.
          *
          * @param string|array $path
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function assertMissing($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->assertMissing($path);
         }
                     /**
          * Assert that the given directory is empty.
          *
          * @param string $path
-         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @return \Illuminate\Filesystem\AwsS3V3Adapter 
          * @static 
          */ 
         public static function assertDirectoryEmpty($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->assertDirectoryEmpty($path);
         }
                     /**
@@ -15554,8 +15717,8 @@
          * @static 
          */ 
         public static function exists($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->exists($path);
         }
                     /**
@@ -15566,8 +15729,8 @@
          * @static 
          */ 
         public static function missing($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->missing($path);
         }
                     /**
@@ -15578,8 +15741,8 @@
          * @static 
          */ 
         public static function fileExists($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->fileExists($path);
         }
                     /**
@@ -15590,8 +15753,8 @@
          * @static 
          */ 
         public static function fileMissing($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->fileMissing($path);
         }
                     /**
@@ -15602,8 +15765,8 @@
          * @static 
          */ 
         public static function directoryExists($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->directoryExists($path);
         }
                     /**
@@ -15614,8 +15777,8 @@
          * @static 
          */ 
         public static function directoryMissing($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->directoryMissing($path);
         }
                     /**
@@ -15626,8 +15789,8 @@
          * @static 
          */ 
         public static function path($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->path($path);
         }
                     /**
@@ -15638,9 +15801,22 @@
          * @static 
          */ 
         public static function get($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->get($path);
+        }
+                    /**
+         * Get the contents of a file as decoded JSON.
+         *
+         * @param string $path
+         * @param int $flags
+         * @return array|null 
+         * @static 
+         */ 
+        public static function json($path, $flags = 0)
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
+                        return $instance->json($path, $flags);
         }
                     /**
          * Create a streamed response for a given file.
@@ -15653,8 +15829,8 @@
          * @static 
          */ 
         public static function response($path, $name = null, $headers = [], $disposition = 'inline')
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->response($path, $name, $headers, $disposition);
         }
                     /**
@@ -15666,8 +15842,8 @@
          * @static 
          */ 
         public static function download($path, $name = null, $headers = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->download($path, $name, $headers);
         }
                     /**
@@ -15680,8 +15856,8 @@
          * @static 
          */ 
         public static function put($path, $contents, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->put($path, $contents, $options);
         }
                     /**
@@ -15694,8 +15870,8 @@
          * @static 
          */ 
         public static function putFile($path, $file = null, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->putFile($path, $file, $options);
         }
                     /**
@@ -15709,8 +15885,8 @@
          * @static 
          */ 
         public static function putFileAs($path, $file, $name = null, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->putFileAs($path, $file, $name, $options);
         }
                     /**
@@ -15721,8 +15897,8 @@
          * @static 
          */ 
         public static function getVisibility($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->getVisibility($path);
         }
                     /**
@@ -15734,8 +15910,8 @@
          * @static 
          */ 
         public static function setVisibility($path, $visibility)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->setVisibility($path, $visibility);
         }
                     /**
@@ -15749,8 +15925,8 @@
          */ 
         public static function prepend($path, $data, $separator = '
 ')
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->prepend($path, $data, $separator);
         }
                     /**
@@ -15764,8 +15940,8 @@
          */ 
         public static function append($path, $data, $separator = '
 ')
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->append($path, $data, $separator);
         }
                     /**
@@ -15776,8 +15952,8 @@
          * @static 
          */ 
         public static function delete($paths)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->delete($paths);
         }
                     /**
@@ -15789,8 +15965,8 @@
          * @static 
          */ 
         public static function copy($from, $to)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->copy($from, $to);
         }
                     /**
@@ -15802,8 +15978,8 @@
          * @static 
          */ 
         public static function move($from, $to)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->move($from, $to);
         }
                     /**
@@ -15814,8 +15990,8 @@
          * @static 
          */ 
         public static function size($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->size($path);
         }
                     /**
@@ -15826,8 +16002,8 @@
          * @static 
          */ 
         public static function checksum($path, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->checksum($path, $options);
         }
                     /**
@@ -15838,8 +16014,8 @@
          * @static 
          */ 
         public static function mimeType($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->mimeType($path);
         }
                     /**
@@ -15850,8 +16026,8 @@
          * @static 
          */ 
         public static function lastModified($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->lastModified($path);
         }
                     /**
@@ -15862,8 +16038,8 @@
          * @static 
          */ 
         public static function readStream($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->readStream($path);
         }
                     /**
@@ -15876,63 +16052,9 @@
          * @static 
          */ 
         public static function writeStream($path, $resource, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->writeStream($path, $resource, $options);
-        }
-                    /**
-         * Get the URL for the file at the given path.
-         *
-         * @param string $path
-         * @return string 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function url($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
-                        return $instance->url($path);
-        }
-                    /**
-         * Determine if temporary URLs can be generated.
-         *
-         * @return bool 
-         * @static 
-         */ 
-        public static function providesTemporaryUrls()
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
-                        return $instance->providesTemporaryUrls();
-        }
-                    /**
-         * Get a temporary URL for the file at the given path.
-         *
-         * @param string $path
-         * @param \DateTimeInterface $expiration
-         * @param array $options
-         * @return string 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function temporaryUrl($path, $expiration, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
-                        return $instance->temporaryUrl($path, $expiration, $options);
-        }
-                    /**
-         * Get a temporary upload URL for the file at the given path.
-         *
-         * @param string $path
-         * @param \DateTimeInterface $expiration
-         * @param array $options
-         * @return array 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function temporaryUploadUrl($path, $expiration, $options = [])
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
-                        return $instance->temporaryUploadUrl($path, $expiration, $options);
         }
                     /**
          * Get an array of all files in a directory.
@@ -15943,8 +16065,8 @@
          * @static 
          */ 
         public static function files($directory = null, $recursive = false)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->files($directory, $recursive);
         }
                     /**
@@ -15955,8 +16077,8 @@
          * @static 
          */ 
         public static function allFiles($directory = null)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->allFiles($directory);
         }
                     /**
@@ -15968,8 +16090,8 @@
          * @static 
          */ 
         public static function directories($directory = null, $recursive = false)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->directories($directory, $recursive);
         }
                     /**
@@ -15980,8 +16102,8 @@
          * @static 
          */ 
         public static function allDirectories($directory = null)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->allDirectories($directory);
         }
                     /**
@@ -15992,8 +16114,8 @@
          * @static 
          */ 
         public static function makeDirectory($path)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->makeDirectory($path);
         }
                     /**
@@ -16004,8 +16126,8 @@
          * @static 
          */ 
         public static function deleteDirectory($directory)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->deleteDirectory($directory);
         }
                     /**
@@ -16015,8 +16137,8 @@
          * @static 
          */ 
         public static function getDriver()
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->getDriver();
         }
                     /**
@@ -16026,8 +16148,8 @@
          * @static 
          */ 
         public static function getAdapter()
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->getAdapter();
         }
                     /**
@@ -16037,8 +16159,8 @@
          * @static 
          */ 
         public static function getConfig()
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->getConfig();
         }
                     /**
@@ -16049,8 +16171,8 @@
          * @static 
          */ 
         public static function buildTemporaryUrlsUsing($callback)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         $instance->buildTemporaryUrlsUsing($callback);
         }
                     /**
@@ -16066,7 +16188,7 @@
          */ 
         public static function when($value = null, $callback = null, $default = null)
         {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->when($value, $callback, $default);
         }
                     /**
@@ -16082,7 +16204,7 @@
          */ 
         public static function unless($value = null, $callback = null, $default = null)
         {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->unless($value, $callback, $default);
         }
                     /**
@@ -16094,8 +16216,8 @@
          * @static 
          */ 
         public static function macro($name, $macro)
-        {
-                        \Illuminate\Filesystem\FilesystemAdapter::macro($name, $macro);
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        \Illuminate\Filesystem\AwsS3V3Adapter::macro($name, $macro);
         }
                     /**
          * Mix another object into the class.
@@ -16107,8 +16229,8 @@
          * @static 
          */ 
         public static function mixin($mixin, $replace = true)
-        {
-                        \Illuminate\Filesystem\FilesystemAdapter::mixin($mixin, $replace);
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        \Illuminate\Filesystem\AwsS3V3Adapter::mixin($mixin, $replace);
         }
                     /**
          * Checks if macro is registered.
@@ -16118,8 +16240,8 @@
          * @static 
          */ 
         public static function hasMacro($name)
-        {
-                        return \Illuminate\Filesystem\FilesystemAdapter::hasMacro($name);
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        return \Illuminate\Filesystem\AwsS3V3Adapter::hasMacro($name);
         }
                     /**
          * Flush the existing macros.
@@ -16128,8 +16250,8 @@
          * @static 
          */ 
         public static function flushMacros()
-        {
-                        \Illuminate\Filesystem\FilesystemAdapter::flushMacros();
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        \Illuminate\Filesystem\AwsS3V3Adapter::flushMacros();
         }
                     /**
          * Dynamically handle calls to the class.
@@ -16141,8 +16263,8 @@
          * @static 
          */ 
         public static function macroCall($method, $parameters)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\AwsS3V3Adapter $instance */
                         return $instance->macroCall($method, $parameters);
         }
          
@@ -18092,7 +18214,7 @@
      * 
      *
      * @template TKey of array-key
-     * @template TValue
+     * @template-covariant TValue
      * @implements \ArrayAccess<TKey, TValue>
      * @implements \Illuminate\Support\Enumerable<TKey, TValue>
      */ 
@@ -18829,7 +18951,7 @@
                     /**
          * 
          *
-         * @param \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware> $middleware
+         * @param \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware>|callable $middleware
          * @return \Spatie\FlareClient\Flare 
          * @static 
          */ 
@@ -19683,6 +19805,7 @@ namespace  {
              * @param array|string $columns
              * @param string $pageName
              * @param int|null $page
+             * @param \Closure|int|null $total
              * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator 
              * @throws \InvalidArgumentException
              * @static 
@@ -19749,6 +19872,19 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->forceCreate($attributes);
+            }
+             
+                /**
+             * Save a new model instance with mass assignment without raising model events.
+             *
+             * @param array $attributes
+             * @return \Illuminate\Database\Eloquent\Model|$this 
+             * @static 
+             */ 
+            public static function forceCreateQuietly($attributes = [])
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->forceCreateQuietly($attributes);
             }
              
                 /**
@@ -20563,7 +20699,7 @@ namespace  {
              * Add a morph-to relationship condition to the query.
              *
              * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
-             * @param \Illuminate\Database\Eloquent\Model|string $model
+             * @param \Illuminate\Database\Eloquent\Model|string|null $model
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -20591,7 +20727,7 @@ namespace  {
              * Add a morph-to relationship condition to the query with an "or where" clause.
              *
              * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
-             * @param \Illuminate\Database\Eloquent\Model|string $model
+             * @param \Illuminate\Database\Eloquent\Model|string|null $model
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -21985,7 +22121,7 @@ namespace  {
                 /**
              * Add a "having" clause to the query.
              *
-             * @param \Closure|string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|\Closure|string $column
              * @param string|int|float|null $operator
              * @param string|int|float|null $value
              * @param string $boolean
@@ -22001,7 +22137,7 @@ namespace  {
                 /**
              * Add an "or having" clause to the query.
              *
-             * @param \Closure|string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|\Closure|string $column
              * @param string|int|float|null $operator
              * @param string|int|float|null $value
              * @return \Illuminate\Database\Query\Builder 

@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Listing extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
+    public $incrementing = false;
     protected $fillable = ["beds", "baths", "area", "city", "code", "street", "street_number", "price", "deleted_at"];
     protected $sortable = ["price", "created_at"];
     public function owner(): BelongsTo

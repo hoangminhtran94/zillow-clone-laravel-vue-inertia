@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProfileImage;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserAccountController extends Controller
 {
@@ -28,7 +30,8 @@ class UserAccountController extends Controller
             "postal_code" => "required"
         ]));
         $file = $request->file("profile_image");
-        $path = $file->store("images", "public");
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs("zillow-clone/public/", $filename, "s3");
         $user->profileImage()->save(new ProfileImage(["filename" => $path]));
 
 

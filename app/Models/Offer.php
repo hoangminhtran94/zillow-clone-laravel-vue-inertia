@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Offer extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+    public $incrementing = false;
 
     protected $fillable = ["amount", "accepted_at", "rejected_at"];
 

@@ -16,6 +16,7 @@
                     v-model.number="form.baths"
                     class-name="col-span-2"
                     label="Number of Baths"
+                    placeholder="Enter number of baths"
                     :error="form.errors.baths"
                 />
                 <Input
@@ -23,6 +24,7 @@
                     v-model.number="form.area"
                     class-name="col-span-2"
                     label="Total Area (m2)"
+                    placeholder="Enter the real estate total area"
                     :error="form.errors.area"
                 />
                 <Input
@@ -30,6 +32,7 @@
                     v-model="form.city"
                     class-name="col-span-4"
                     label="City"
+                    placeholder="Enter real estate city"
                     :error="form.errors.city"
                 />
                 <Input
@@ -37,6 +40,7 @@
                     v-model="form.code"
                     class-name="col-span-2"
                     label="Post Code"
+                    placeholder="Enter real estate postal code"
                     :error="form.errors.code"
                 />
                 <Input
@@ -44,6 +48,7 @@
                     v-model="form.street"
                     class-name="col-span-4"
                     label="Street"
+                    placeholder="Enter real estate street"
                     :error="form.errors.street"
                 />
                 <Input
@@ -51,6 +56,7 @@
                     v-model.number="form.street_number"
                     class-name="col-span-2"
                     label="Street number"
+                    placeholder="Enter street number"
                     :error="form.errors.street_number"
                 />
                 <Input
@@ -58,6 +64,7 @@
                     v-model.number="form.price"
                     class-name="col-span-6"
                     label="Listing Price"
+                    placeholder="Enter listing size"
                     :error="form.errors.price"
                 />
 

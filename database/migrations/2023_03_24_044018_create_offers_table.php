@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('offers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid("id")->primary();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Listing::class, "listing_id")->constrained("listings");
             $table->foreignIdFor(\App\Models\User::class, "bidder_id")->constrained("users");

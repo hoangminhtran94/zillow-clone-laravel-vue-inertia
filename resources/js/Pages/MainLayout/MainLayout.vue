@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col min-h-screen">
         <NavBar :user="user" :notification-count="notificationCount" />
-        <main class="container flex-1 mx-auto p-4">
+        <main class="container flex-1 mx-auto p-4 flex flex-col">
             <div
                 v-if="flashSuccess"
                 class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2"

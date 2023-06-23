@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+
 
 class ListingImage extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+    public $incrementing = false;
     protected $fillable = ["filename"];
     protected $appends = ["src"];
     public function listing(): BelongsTo
@@ -18,6 +22,6 @@ class ListingImage extends Model
     }
     public function getSrcAttribute()
     {
-        return asset("storage/{$this->filename}");
+        return  Storage::disk('s3')->url($this->filename);
     }
 }

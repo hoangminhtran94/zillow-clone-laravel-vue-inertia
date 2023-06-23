@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profile_images', function (Blueprint $table) {
-            $table->id();
+            $table->uuid("id")->primary();
             $table->timestamps();
             $table->tinyText("filename")->default("");
             $table->foreignIdFor(\App\Models\User::class)->constrained("users");
