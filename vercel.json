@@ -1,6 +1,9 @@
 {
     "version": 2,
-    "builds": [{ "src": "/api/index.php", "use": "vercel-php@0.6.0" }],
+    "builds": [
+        { "src": "/api/index.php", "use": "vercel-php@0.6.0" },
+        { "src": "vite build", "use": "@vercel/node" }
+    ],
     "routes": [
         {
             "src": "/build/(.*)",
