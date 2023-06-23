@@ -82,7 +82,9 @@ const form = useForm({
     password: null,
     password_confirmation: null,
 });
-
+onUpdated(() => {
+    console.log(form.profile_image);
+});
 // eslint-disable-next-line no-undef
 const signup = () => form.post(route(`user-account.store`));
 </script>

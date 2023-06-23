@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProfileImage;
 use Illuminate\Support\Facades\Storage;
-
+use Exception;
 
 class UserAccountController extends Controller
 {
@@ -20,6 +20,18 @@ class UserAccountController extends Controller
     public function store(Request $request)
     {
 
+        $file = $request->file("profile_image");
+        $path = "";
+        try {
+            $s3 = Storage::disk("s3");
+            $path = $s3->putFile("zillow-clone/public", $file);
+            dd([$path]);
+        } catch (Exception $e) {
+            \Log::error("Swomthing" . $e->getMessage());
+            dd('File upload failed: ' . $e->getMessage());
+            throw $e;
+        }
+
         $user = User::create($request->validate([
             "name" => "required",
             "email" => "required|email|unique:users",
@@ -29,9 +41,8 @@ class UserAccountController extends Controller
             "address" => "required",
             "postal_code" => "required"
         ]));
-        $file = $request->file("profile_image");
-        $filename = $file->getClientOriginalName();
-        $path = $file->storeAs("zillow-clone/public/", $filename, "s3");
+
+
         $user->profileImage()->save(new ProfileImage(["filename" => $path]));
 
 
