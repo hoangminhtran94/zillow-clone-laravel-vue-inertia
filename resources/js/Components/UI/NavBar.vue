@@ -46,7 +46,7 @@
                         </div>
                     </Link>
                     <Link
-                        :href="route('profile')"
+                        :href="route('your-profile.index')"
                         class="text-gray-500 text-sm"
                     >
                         {{ user.name }}

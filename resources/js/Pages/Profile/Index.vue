@@ -32,7 +32,7 @@
                 </h2>
             </div>
             <button
-                class="btn-normal w-[200px] max-w-full text-center"
+                class="btn-normal w-[200px] max-w-full text-center mt-6"
                 @click="toggleEditModeHandler"
             >
                 Edit Profile

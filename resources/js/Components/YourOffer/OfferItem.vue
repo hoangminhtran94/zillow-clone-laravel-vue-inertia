@@ -1,6 +1,7 @@
 <template>
-    <div
+    <Link
         class="flex rounded shadow-md border border-indigo-300 p-5 hover:scale-[101%] transition-all cursor-pointer w-[800px] max-w-full flex-wrap"
+        :href="route('listing.show', { listing: offer.listing_id })"
     >
         <div>
             <img
@@ -18,12 +19,12 @@
             <span class="text-slate-200 text-sm">Status:</span>
             <div class="flex gap-2">
                 <span
-                    v-if="!accepted_at && !rejected_at"
+                    v-if="!offer.accepted_at && !offer.rejected_at"
                     class="p-2 rounded bg-yellow-100"
                     >Pending</span
                 >
-                <span v-if="accepted_at" class="">Accepted</span>
-                <span v-if="rejected_at" class="">Rejected</span>
+                <span v-if="offer.accepted_at" class="">Accepted</span>
+                <span v-if="offer.rejected_at" class="">Rejected</span>
             </div>
         </div>
         <div class="flex flex-col px-4">
@@ -36,10 +37,11 @@
                 <p>{{ formatedOfferedDate }}</p>
             </div>
         </div>
-    </div>
+    </Link>
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
 const formatCurrency = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

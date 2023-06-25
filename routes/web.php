@@ -31,11 +31,11 @@ Route::resource("listing", ListingController::class)->only(["index", "show"]);
 
 Route::resource("listing.offer", ListingOfferController::class)->middleware("auth")->only(["store"]);
 
-Route::get("/your-profile", [AuthController::class, "index"])->middleware("auth")->name("profile");
 Route::get("login", [AuthController::class, "create"])->name("login");
 Route::post("login", [AuthController::class, "store"])->name("login.store");
 Route::delete("logout", [AuthController::class, "destroy"])->name("logout");
 
+Route::resource("your-profile", UserAccountController::class)->middleware("auth")->only(["index", "edit"]);
 Route::resource("user-account", UserAccountController::class)->only(["create", "store"]);
 Route::resource("notification", NotificationController::class)->middleware(["auth"])->only(["index"]);
 Route::put("notification/{notification}/seen", NotificationSeenController::class)->name("notification.seen")->middleware(["auth"]);

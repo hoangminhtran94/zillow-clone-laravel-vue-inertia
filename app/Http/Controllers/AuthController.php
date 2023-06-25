@@ -11,15 +11,6 @@ use App\Models\User;
 class AuthController extends Controller
 
 {
-    public function index(Request $request)
-    {
-        $authenticatedUser = Auth::user();
-        if (!$authenticatedUser) {
-            return redirect()->route("login");
-        }
-        $user = User::find($authenticatedUser->id)->load("profileImage");;
-        return inertia("Profile/Index", ["user" => $user]);
-    }
 
     public function create()
     {

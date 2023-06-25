@@ -17,12 +17,23 @@ class UserAccountController extends Controller
     {
         return inertia("UserAccount/Create");
     }
+
+    public function index()
+    {
+        $authenticatedUser = Auth::user();
+        if (!$authenticatedUser) {
+            return redirect()->route("login");
+        }
+        $user = User::find($authenticatedUser->id)->load("profileImage");;
+        return inertia("Profile/Index", ["user" => $user]);
+    }
+
+
+
     public function store(Request $request)
     {
-
         $file = $request->file("profile_image");
         $path = Storage::putFile("zillow-clone/public", $file);
-
         $user = User::create($request->validate([
             "name" => "required",
             "email" => "required|email|unique:users",
@@ -32,11 +43,7 @@ class UserAccountController extends Controller
             "address" => "required",
             "postal_code" => "required"
         ]));
-
-
         $user->profileImage()->save(new ProfileImage(["filename" => $path]));
-
-
         Auth::login($user);
         event(new Registered($user));
         return redirect()->route("listing.index")->with("success", "Account created");
