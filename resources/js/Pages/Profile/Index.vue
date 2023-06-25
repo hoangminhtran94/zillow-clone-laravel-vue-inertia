@@ -107,6 +107,13 @@
                 <div v-if="editMode === 'password'" class="flex flex-col gap-3">
                     <Input
                         id="password"
+                        v-model="passwordForm.current_password"
+                        label="Current password"
+                        type="password"
+                        :error="passwordForm.errors?.current_password"
+                    />
+                    <Input
+                        id="password"
                         v-model="passwordForm.password"
                         label="Password"
                         type="password"
@@ -164,6 +171,7 @@ const infoForm = useForm({
     _token: props.csrf_token,
 });
 const passwordForm = useForm({
+    current_password: "",
     password: "",
     password_confirmation: "",
     _token: props.csrf_token,
