@@ -32,20 +32,18 @@
                 </h2>
             </div>
             <button
-                class="btn-normal w-full text-center"
+                class="btn-normal w-[200px] max-w-full text-center"
                 @click="toggleEditModeHandler"
             >
                 Edit Profile
             </button>
         </div>
         <div v-if="inEditMode">
-            <ul class="flex gap-4 font-bold my-3">
+            <ul class="flex font-bold mt-3 mb-6">
                 <li
-                    class="cursor-pointer transition-all"
+                    class="cursor-pointer transition-all p-2 rounded-tl-md bg-indigo-700 text-white"
                     :class="
-                        editMode === 'info'
-                            ? 'scale-110 border-b border-indigo-800'
-                            : ' opacity-30 hover:scale-105'
+                        editMode !== 'info' && ' opacity-20 hover:opacity-40'
                     "
                     @click="
                         () => {
@@ -56,11 +54,10 @@
                     Edit informations
                 </li>
                 <li
-                    class="cursor-pointer transition-all"
+                    class="cursor-pointer transition-all p-2 rounded-tr-md bg-indigo-700 text-white"
                     :class="
-                        editMode === 'password'
-                            ? 'scale-110 border-b border-indigo-800'
-                            : ' opacity-30 hover:scale-105'
+                        editMode !== 'password' &&
+                        ' opacity-20 hover:opacity-40'
                     "
                     @click="
                         () => {
@@ -128,7 +125,7 @@
                     />
                 </div>
 
-                <div class="flex gap-2 mt-4">
+                <div class="flex gap-2 mt-10">
                     <button
                         class="btn-normal w-full text-center"
                         @click="toggleEditModeHandler"

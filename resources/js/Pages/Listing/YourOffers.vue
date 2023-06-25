@@ -4,17 +4,20 @@
             You do not have any offer
         </PlaceHolderBox>
 
-        <ul v-else>
-            <li v-for="(offer, index) in offers" v-bind:key="index">
-                {{ offer.amount }}
-            </li>
-        </ul>
+        <div v-else>
+            <OfferItem
+                v-for="(offer, index) in offers"
+                :offer="offer"
+                v-bind:key="index"
+            />
+        </div>
     </div>
 </template>
 
 <script setup>
 import PlaceHolderBox from "../../Components/UI/PlaceHolderBox.vue";
+import OfferItem from "../../Components/YourOffer/OfferItem.vue";
 defineProps({
-    offers: Object,
+    offers: Array,
 });
 </script>
