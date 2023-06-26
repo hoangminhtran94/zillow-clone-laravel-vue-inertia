@@ -54,7 +54,7 @@ const formatedListDate = new Date(
 ).toLocaleDateString();
 const listingImage = props.offer.listing_image
     ? props.offer.listing_image.src
-    : "/images/Group 147.png";
+    : "/images/placeholder.png";
 const formatedAmount = formatCurrency.format(props.offer.amount);
 const props = defineProps({ offer: Object });
 </script>

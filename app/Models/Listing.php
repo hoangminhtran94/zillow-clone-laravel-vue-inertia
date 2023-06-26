@@ -18,6 +18,7 @@ class Listing extends Model
     public $incrementing = false;
     protected $fillable = ["beds", "baths", "area", "city", "code", "street", "street_number", "price", "deleted_at"];
     protected $sortable = ["price", "created_at"];
+
     public function owner(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class, "by_user_id");
@@ -27,6 +28,7 @@ class Listing extends Model
     {
         return $this->hasMany(ListingImage::class);
     }
+
 
     public function scopeFilter($query, array $filters)
     {
