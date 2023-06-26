@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Hash;
 
 class AuthController extends Controller
 
@@ -19,6 +20,7 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
+
         if (!Auth::attempt($request->validate([
             "email" => "required|string|email",
             "password" => "required|string",

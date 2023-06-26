@@ -36,6 +36,9 @@ Route::post("login", [AuthController::class, "store"])->name("login.store");
 Route::delete("logout", [AuthController::class, "destroy"])->name("logout");
 
 Route::resource("your-profile", UserAccountController::class)->middleware("auth")->only(["index", "edit"]);
+Route::post("your-profile/change-password", [UserAccountController::class, "change_password"])->middleware("auth")->name("change-password");
+Route::get("your-profile/edit-profile", [UserAccountController::class, "display_edit_profile"])->middleware("auth")->name("edit-profile-page");
+Route::post("your-profile/edit-profile", [UserAccountController::class, "save_edit_profile"])->middleware("auth")->name("save-edit-profile");
 Route::resource("user-account", UserAccountController::class)->only(["create", "store"]);
 Route::resource("notification", NotificationController::class)->middleware(["auth"])->only(["index"]);
 Route::put("notification/{notification}/seen", NotificationSeenController::class)->name("notification.seen")->middleware(["auth"]);
