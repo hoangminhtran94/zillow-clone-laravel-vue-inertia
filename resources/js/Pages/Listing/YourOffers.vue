@@ -4,7 +4,7 @@
             You do not have any offer
         </PlaceHolderBox>
 
-        <div v-else>
+        <div class="grid grid-cols-1 gap-3 md:grid-cols-2" v-else>
             <OfferItem
                 v-for="(offer, index) in offers"
                 :offer="offer"

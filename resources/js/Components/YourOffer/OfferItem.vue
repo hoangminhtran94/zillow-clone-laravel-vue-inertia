@@ -1,6 +1,6 @@
 <template>
     <Link
-        class="flex rounded shadow-md border border-indigo-300 p-5 hover:scale-[101%] transition-all cursor-pointer w-[800px] max-w-full flex-wrap"
+        class="flex rounded shadow-md border border-indigo-300 p-5 hover:scale-[101%] transition-all cursor-pointer flex-wrap"
         :href="route('listing.show', { listing: offer.listing_id })"
     >
         <div>
@@ -53,7 +53,7 @@ const formatedListDate = new Date(
     props.offer.listing_date
 ).toLocaleDateString();
 const listingImage = props.offer.listing_image
-    ? props.offer.listing_image
+    ? props.offer.listing_image.src
     : "https://res.cloudinary.com/dso1cyy53/image/upload/v1687680742/Group_147_jgfacg.png";
 const formatedAmount = formatCurrency.format(props.offer.amount);
 const props = defineProps({ offer: Object });
