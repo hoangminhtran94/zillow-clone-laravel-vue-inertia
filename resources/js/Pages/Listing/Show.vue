@@ -73,6 +73,7 @@
                 </div>
             </Box>
             <MakeOffer
+                :csrf_token="csrf_token"
                 v-if="user && !offerMade && user.id !== listing.by_user_id"
                 :listing="listing"
                 @offer-updated="offer = $event"
@@ -95,7 +96,11 @@ import { usePage } from "@inertiajs/vue3";
 const interest = ref(2.5);
 const duration = ref(25);
 const offer = ref(props.listing.price);
-const props = defineProps({ listing: Object, offerMade: Object });
+const props = defineProps({
+    listing: Object,
+    offerMade: Object,
+    csrf_token: String,
+});
 const user = computed(() => usePage().props.user);
 const { monthlyPayment, totalInterest, totalPaid } = useMonthlyPayment(
     offer,
