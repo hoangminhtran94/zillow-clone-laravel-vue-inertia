@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get("/", [IndexController::class, "index"])->name("home");
+Route::post("/", [IndexController::class, "search"])->name("home-search");
 
 Route::get("/listing/offer", [ListingOfferController::class, "index"])->middleware(["auth", "verified"])->name("listing.offer");
 Route::resource("listing", ListingController::class)->only(["index", "show"]);
