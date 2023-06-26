@@ -26,7 +26,7 @@ class RealtorListingImageController extends Controller
     public function store(Listing $listing, Request $request)
     {
         if ($request->hasFile("images")) {
-            $request->validate(["images.*" => "mimes:png,jpg,jpeg|max:5000"], ["images.*.mimes" => "File should be an image (jpg,jpeg,png)"]);
+            $request->validate(["images.*" => "mimes:png,jpg,jpeg,avif,webp|max:5000"], ["images.*.mimes" => "File should be an image (jpg,jpeg,png,avif,webp)"]);
 
             foreach ($request->file("images") as $file) {
                 $path = Storage::putFile("zillow-clone/public/listing", $file);
