@@ -1,5 +1,5 @@
 <template>
-    <Box>
+    <Box class-name="cursor-pointer hover:scale-[103%] transition-all">
         <div>
             <Link :href="route(`listing.show`, { listing: listing.id })">
                 <div class="flex items-center gap-2">

@@ -54,7 +54,7 @@ const formatedListDate = new Date(
 ).toLocaleDateString();
 const listingImage = props.offer.listing_image
     ? props.offer.listing_image.src
-    : "https://res.cloudinary.com/dso1cyy53/image/upload/v1687680742/Group_147_jgfacg.png";
+    : "/images/Group 147.png";
 const formatedAmount = formatCurrency.format(props.offer.amount);
 const props = defineProps({ offer: Object });
 </script>
