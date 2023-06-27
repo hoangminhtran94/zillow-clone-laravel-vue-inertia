@@ -70,7 +70,7 @@
             </div>
 
             <div class="col-span-6">
-                <button type="submit" class="btn-primary">Create</button>
+                <button type="submit" class="btn-primary">Save</button>
             </div>
         </div>
     </form>

@@ -17,17 +17,25 @@ class RealtorOfferController extends Controller
     public function show(Listing $listing, Offer $offer)
     {
     }
-    public function update(Listing $listing, Offer $offer)
+    public function update(Listing $listing, Offer $offer, Request $request)
     {
         $this->authorize('update', $listing);
+        $status = $request->status;
 
-        $offer->update(["accepted_at" => now()]);
-        $listing->sold_at = now();
-        $listing->save();
+        if ($status === "accept") {
+            $offer->update(["accepted_at" => now()]);
+            $listing->sold_at = now();
+            $listing->save();
 
-        $listing->offers()->except($offer)
-            ->update(['rejected_at' => now()]);
+            $listing->offers()->except($offer)
+                ->update(['rejected_at' => now()]);
 
-        return redirect()->back()->with(["success" => "Offer #{$offer->id} accepted"]);
+            return redirect()->back()->with(["success" => "Offer #{$offer->id} accepted"]);
+        }
+
+        if ($status === "reject") {
+            $offer->update(['rejected_at' => now()]);
+            return redirect()->back()->with(["success" => "Offer #{$offer->id} rejected"]);
+        }
     }
 }

@@ -23,8 +23,12 @@
                     class="p-2 rounded bg-yellow-100"
                     >Pending</span
                 >
-                <span v-if="offer.accepted_at" class="">Accepted</span>
-                <span v-if="offer.rejected_at" class="">Rejected</span>
+                <span v-if="offer.accepted_at" class="p-2 rounded bg-green-100"
+                    >Accepted</span
+                >
+                <span v-if="offer.rejected_at" class="p-2 rounded bg-red-100"
+                    >Rejected</span
+                >
             </div>
         </div>
         <div class="flex flex-col px-4">

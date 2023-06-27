@@ -21,6 +21,7 @@
                 :listing-price="listing.price"
                 :index="index"
                 :is-sold="listing.sold_at != null"
+                :csrf_token="csrf_token"
             />
         </div>
 
@@ -43,6 +44,6 @@ import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
-const props = defineProps({ listing: Object });
+const props = defineProps({ listing: Object, csrf_token: String });
 const hasOffers = computed(() => props.listing.offers.length);
 </script>
