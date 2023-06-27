@@ -18,7 +18,6 @@ class OfferMade extends Notification
     public function __construct(
         private Offer $offer
     ) {
-
     }
 
     /**
@@ -37,7 +36,7 @@ class OfferMade extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('New Offer ({$this->offer->amount}) was made for your listing')
+            ->line("New Offer ({$this->offer->amount}) was made for your listing")
             ->action('See your listing', route("realtor.listing.offer.index", ["listing" => $this->offer->listing_id]))
             ->line('Thank you for using our application!');
     }
